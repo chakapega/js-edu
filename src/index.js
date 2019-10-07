@@ -5,10 +5,20 @@
  * @returns number of weeks needed for finish education
  */
 module.exports = function getTimeForEducation(
-    focus = 'family', 
-    knowsProgramming = true,
-    config = {family: 4}
-    ) {
-      return 0;
-  };
+  focus = 'family', 
+  knowsProgramming = true,
+  config = {family: 4}
+  ) {
+    const requiredNumberOfHoursWithBasicKnowledge = 800;
+    const requiredNumberOfHoursWithoutBasicKnowledge = 1300;
+    let requiredHours = 0;
+
+    if (knowsProgramming) {
+      requiredHours = requiredNumberOfHoursWithBasicKnowledge / config[focus];
+    } else if (knowsProgramming === false) {
+      requiredHours = requiredNumberOfHoursWithoutBasicKnowledge / config[focus];
+    };
+
+    return Math.ceil(requiredHours);
+    };
   
